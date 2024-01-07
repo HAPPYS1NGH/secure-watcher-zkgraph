@@ -1,0 +1,38 @@
+specVersion: 0.0.2
+apiVersion: 0.0.2
+name: Secure-Watcher
+description: "This zkGraph automated transfers all the ERC20 Tokens and NFTs if approved for the contract if more than 1 token addresses are completely drained/transferred to another account in the same block. This is a security measure to prevent hacks due to private key compromise."
+
+repository: https://github.com/hyperoracle/zkgraph
+dataSources:
+  - kind: ethereum
+    network: mainnet
+    event:
+      - address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" #USDC
+        events:
+          - "Transfer(address,address,uint256)"
+      - address: "0xdAC17F958D2ee523a2206206994597C13D831ec7" #USDT
+        events:
+          - "Transfer(address,address,uint256)"
+      - address: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599" #WBTC
+        events:
+          - "Transfer(address,address,uint256)"
+      - address: "0x6b175474e89094c44da98b954eedeac495271d0f" #DAI
+        events:
+          - "Transfer(address,address,uint256)"
+      - address: "0xed5af388653567af2f388e6224dc7c4b3241c544" #Azuki
+        events:
+          - "Transfer(address,address,uint256)"
+      - address: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D" #BoredApe
+        events:
+          - "Transfer(address,address,uint256)"
+
+mapping:
+  language: wasm/assemblyscript
+  file: ./mapping.ts
+  handler: handleBlocks
+
+dataDestinations:
+  - kind: ethereum
+    network: sepolia
+    address: "0x0000000000000000000000000000000000000001" #The secure watcher contract address which will transfer the tokens to the backup account (All the tokens )
