@@ -3,7 +3,7 @@ apiVersion: 0.0.2
 name: Secure-Watcher
 description: "This zkGraph automated transfers all the ERC20 Tokens and NFTs if approved for the contract if more than 1 token addresses are completely drained/transferred to another account in the same block. This is a security measure to prevent hacks due to private key compromise."
 
-repository: https://github.com/hyperoracle/zkgraph
+repository: https://github.com/HAPPYS1NGH/secure-watcher-zkgraph
 dataSources:
   - kind: ethereum
     network: mainnet
